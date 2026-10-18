@@ -1,0 +1,11 @@
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.sqlite3
+.DS_Store
+# File e dati da non pubblicare
+/dati/
+/orario_prima_importazione.sql

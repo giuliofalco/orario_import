@@ -1,0 +1,505 @@
+
+
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aggiornamento orario scolastico</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #243247;
+            background: linear-gradient(135deg, #edf4fb, #f6f8fc);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #173b63;
+            color: white;
+            padding: 22px 24px;
+            box-shadow: 0 3px 12px #102b491c;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: #ffffff1c;
+            border-radius: 12px;
+            font-size: 26px;
+        }
+
+        header h1 {
+            font-size: 19px;
+            margin: 0 0 5px;
+            font-weight: 600;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 13px;
+            color: #d6e4f4;
+        }
+
+        main {
+            width: 100%;
+            max-width: 900px;
+            margin: 48px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 34px;
+            box-shadow: 0 8px 30px #183b6010;
+            border: 1px solid #e5ebf2;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: #2464a0;
+            background: #eaf3fc;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            font-size: 27px;
+            line-height: 1.25;
+            margin: 0 0 12px;
+            color: #173b63;
+        }
+
+        .intro {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 0 0 28px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .upload-area {
+            border: 2px dashed #c7d6e7;
+            background: #f8fbff;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: border-color .2s, background .2s;
+        }
+
+        .upload-area:focus-within {
+            border-color: #367db8;
+            background: #f0f7ff;
+        }
+
+        .upload-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .upload-area p {
+            margin: 0 0 9px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .upload-area small {
+            color: #718096;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 18px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            max-width: 390px;
+            margin: 0 auto;
+            font-size: 13px;
+            color: #526176;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #e5eef8;
+            color: #214f7a;
+            border: 0;
+            border-radius: 6px;
+            padding: 9px 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .notice {
+            display: flex;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff8e8;
+            border: 1px solid #f2e2b9;
+            color: #78591c;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .notice-icon {
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .notice strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 26px;
+        }
+
+        .secondary-link {
+            color: #617187;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .secondary-link:hover {
+            color: #173b63;
+            text-decoration: underline;
+        }
+
+        button {
+            border: 0;
+            border-radius: 9px;
+            padding: 13px 21px;
+            background: #24649b;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 8px #24649b25;
+            transition: background .2s, transform .2s;
+        }
+
+        button:hover {
+            background: #174c7b;
+            transform: translateY(-1px);
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid #83baf0;
+            outline-offset: 3px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8290a3;
+            font-size: 12px;
+        }
+
+        @media (max-width: 520px) {
+            main {
+                margin: 24px auto;
+                padding: 0 14px;
+            }
+
+            .card {
+                padding: 23px 18px;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
+
+            .actions {
+                align-items: stretch;
+                flex-direction: column-reverse;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .secondary-link {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo" aria-hidden="true">📅</div>
+            <div>
+                <h1>Gestione orario scolastico</h1>
+                <p>Strumento di aggiornamento delle lezioni</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <span class="eyebrow">Area riservata</span>
+
+            <h2>Aggiornamento orario</h2>
+            
+            {% if messaggio %}
+                <div style="
+                    margin: 20px 0;
+                    padding: 15px;
+                    border-radius: 8px;
+                    background: {% if errore %}#fff0f0{% else %}#e8f7ed{% endif %};
+                    color: {% if errore %}#a12626{% else %}#216b3a{% endif %};
+                   ">
+                {{ messaggio }}
+                </div>
+            {% endif %}
+
+            <p class="intro">
+                Da questa pagina puoi caricare il file Excel con il nuovo
+                orario delle lezioni e verificarne i dati prima
+                di aggiornare il sistema.
+            </p>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <label class="section-title" for="file_excel">
+                    1. Seleziona il file Excel
+                </label>
+
+                <div class="upload-area">
+                    <div class="upload-icon" aria-hidden="true">📊</div>
+
+                    <p>Scegli il file contenente l'orario</p>
+
+                    <small>
+                        Formato supportato: Excel (.xlsx)
+                    </small>
+
+                    <input
+                        type="file"
+                        id="file_excel"
+                        name="file_excel"
+                        accept=".xlsx"
+                        required
+                    >
+                </div>
+
+                <div class="notice">
+                    <div class="notice-icon" aria-hidden="true">⚠️</div>
+                    <div>
+                        <strong>Importante</strong>
+                        L'aggiornamento sostituirà l'orario attualmente
+                        presente nel sistema. Prima di procedere sarà
+                        necessario controllare i dati del nuovo file.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a class="secondary-link" href="/admin/">
+                        ← Torna all'amministrazione
+                    </a>
+
+                    <button type="submit">
+                        Carica e analizza &nbsp; →
+                    </button>
+                </div>
+            </form>
+            
+{% if anteprima %}
+    <div style="margin-top: 30px;">
+        <h2>Anteprima dell'orario</h2>
+        
+        
+{% if anteprima.numero_conflitti == 0 %}
+    <div style="
+        margin: 15px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: #e8f7ed;
+        color: #216b3a;
+    ">
+        <strong>✓ Nessun conflitto rilevato</strong>
+        <p style="margin-bottom: 0;">
+            Tutte le assegnazioni sono compatibili con il controllo effettuato.
+        </p>
+    </div>
+{% else %}
+    <div style="
+        margin: 15px 0;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff0f0;
+        color: #a12626;
+    ">
+        <strong>Attenzione: {{ anteprima.numero_conflitti }} conflitti rilevati</strong>
+
+        <ul>
+            {% for conflitto in anteprima.conflitti %}
+                <li>
+                    {{ conflitto.docente }} — {{ conflitto.giorno }},
+                    ora {{ conflitto.ora }}:
+                    {{ conflitto.classe1 }} / {{ conflitto.classe2 }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
+        <p>
+            <strong>Docenti:</strong> {{ anteprima.numero_docenti }}
+            &nbsp; | &nbsp;
+            <strong>Assegnazioni:</strong> {{ anteprima.numero_lezioni }}
+        </p>
+
+        {% if anteprima.valori_speciali %}
+            <p>
+                <strong>Valori speciali:</strong>
+                {{ anteprima.valori_speciali }}
+            </p>
+        {% endif %}
+
+        <div style="overflow-x: auto; margin-top: 20px;">
+        
+        <details>
+            <summary>Mostra/Nascondi orario</summary>
+            <table style="
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13px;
+            ">
+                <thead>
+                    <tr style="background: #eaf1ff;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Docente</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Giorno</th>
+                        {% for ora in "1234567" %}
+                            <th style="padding: 10px; border: 1px solid #ddd;">
+                                {{ ora }}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+               
+<tbody>
+    {% for riga in anteprima.righe %}
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">
+                {{ riga.docente }}
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd;">
+                {{ riga.giorno }}
+            </td>
+
+            {% for classe in riga.ore %}
+                <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                    {{ classe }}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</tbody>
+
+            </table>
+            </details>
+        </div>
+    </div>
+
+
+    {% if anteprima.numero_conflitti == 0 %}
+        <div style="
+            margin-top: 25px;
+            padding: 20px;
+            background: #fff8e6;
+            border: 1px solid #f0d58a;
+            border-radius: 10px;
+        ">
+            <h3 style="margin-top: 0;">Conferma importazione</h3>
+
+            <p>
+                Stai per sostituire l'orario presente nel database
+                con quello appena analizzato.
+                Le altre tabelle non verranno modificate.
+            </p>
+
+            <form method="post"
+                  onsubmit="return confirm('Confermi la sostituzione dell’orario nel database?');">
+                {% csrf_token %}
+                <input type="hidden"
+                       name="azione"
+                       value="conferma_importazione">
+
+                <button type="submit"
+                        style="
+                            background: #167044;
+                            color: white;
+                            padding: 13px 22px;
+                            border: none;
+                            border-radius: 7px;
+                            font-size: 15px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        ">
+                    Conferma e importa orario
+                </button>
+            </form>
+        </div>
+    {% endif %}
+    
+    
+{% endif %}
+
+        </div>
+    </main>
+
+    <footer>
+        Gestione orario scolastico · Area riservata
+    </footer>
+</body>
+</html>
+
+
+

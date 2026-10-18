@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-163zx@%)cz21rk!c(#ujhyf+-o!q37re5j7!ekafaxw*b3kkie
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["importa-orario.itcgmapelli.it",]
+ALLOWED_HOSTS = ["*",]
 
 
 # Application definition
